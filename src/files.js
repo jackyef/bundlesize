@@ -11,7 +11,8 @@ config.map(file => {
   const paths = glob.sync(file.path)
   if (!paths.length) {
     error(`There is no matching file for ${file.path} in ${process.cwd()}`, {
-      silent: true
+      silent: false, // If true, will call process.exit(1) silently
+      exit: false, // If true, this will throw an error
     })
   } else {
     paths.map(path => {
