@@ -1,16 +1,14 @@
 {
-  "name": "@jackyef/bundlesize",
+  "name": "bundlesize-no-exit",
   "version": "0.18.0",
   "description": "Keep your library size in check",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/siddharthkp/bundlesize.git"
+    "url": "git+https://github.com/jackyef/bundlesize.git"
   },
   "main": "index.js",
   "bin": {
-    "bundlesize": "index.js",
-    "bundlesize-init": "src/init-status.js",
-    "bundlesize-pipe": "pipe.js"
+    "bundlesize-no-exit": "index.js"
   },
   "scripts": {
     "precommit": "lint-staged",
@@ -73,5 +71,9 @@
     "type": "opencollective",
     "url": "https://opencollective.com/bundlesize",
     "logo": "https://opencollective.com/opencollective/logo.txt"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   }
 }
