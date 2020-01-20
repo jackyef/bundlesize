@@ -7,8 +7,11 @@ const debug = require('./debug')
 const compressedSize = require('./compressed-size')
 const files = []
 
+const matched = {};
+
 config.map(file => {
   const paths = glob.sync(file.path)
+
   if (!paths.length) {
     error(`There is no matching file for ${file.path} in ${process.cwd()}`, {
       silent: false, // If true, will call process.exit(1) silently
@@ -16,10 +19,14 @@ config.map(file => {
     })
   } else {
     paths.map(path => {
-      const maxSize = bytes(file.maxSize) || Infinity
-      const compression = file.compression || 'gzip'
-      const size = compressedSize(fs.readFileSync(path, 'utf8'), compression)
-      files.push({ maxSize, path, size, compression })
+      if (!matched[path]) {
+        const maxSize = bytes(file.maxSize) || Infinity
+        const compression = file.compression || 'gzip'
+        const size = compressedSize(fs.readFileSync(path, 'utf8'), compression)
+        files.push({ maxSize, path, size, compression })
+
+        matched[path] = true;
+      }
     })
   }
 })
