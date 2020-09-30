@@ -1,7 +1,7 @@
 const gzip = require('gzip-size')
 const brotli = require('brotli-size')
 
-const getCompressedSize = (data, compression = 'gzip') => {
+const getCompressedSize = (data, compression = 'brotli') => {
   let size
   switch (compression) {
     case 'gzip':

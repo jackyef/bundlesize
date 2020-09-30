@@ -27,7 +27,7 @@ program
 const config = {
   name: program.name || require('read-pkg-up').sync().pkg.name,
   maxSize: program.maxSize,
-  compression: program.compression || 'gzip'
+  compression: program.compression || 'brotli'
 }
 
 debug('config', config)
